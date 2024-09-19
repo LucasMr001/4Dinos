@@ -32,8 +32,8 @@ body{
     position: relative;
     align-items: flex-end;
     display: flex;
-    box-shadow: -5px 0px 0px var(--border-color), 5px -5px 0px var(--border-color), -5px -5px 0px var(--border-color),  5px 5px 0px var(--border-color),  0px 5px 0px var(--border-color);
-    background-image: url("./images/background.png");
+    box-shadow: -5px 5px 0px var(--border-color), 5px -5px 0px var(--border-color), -5px -5px 0px var(--border-color),  5px 5px 0px var(--border-color),  0px 5px 0px var(--border-color);
+    background-image: url("./images/cen/background.png");
     background-size: auto 100%;
     background-position: bottom;
     height: 50%;
