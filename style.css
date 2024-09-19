@@ -1,5 +1,9 @@
+@import url('https://fonts.cdnfonts.com/css/gameplay');
+
 :root {
-    --border-color: rgb(0, 0, 0);
+    --border-color: rgb(87, 87, 87);
+    --height-dino: 8vh;
+    --heightJUMP-dino: 30vh;
 }
 
 *{
@@ -8,43 +12,163 @@
 }
 
 body{
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #202020;
     height: 100vh;
+    width: 100%;
 }
 
 .container{
     display: flex;
     flex-wrap: wrap;
-    height: 100vh;
-    background: purple;
+    width: 1700px;
+    height: 96vh;
+    margin: 2%;
+    box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.178);
 }
 .screen{
+    position: relative;
     align-items: flex-end;
     display: flex;
-    box-shadow: -5px 0px 0px var(--border-color), 5px -5px 0px var(--border-color), -5px -5px 0px var(--border-color);
-    background: red;
+    box-shadow: -5px 5px 0px var(--border-color), 5px -5px 0px var(--border-color), -5px -5px 0px var(--border-color),  5px 5px 0px var(--border-color),  0px 5px 0px var(--border-color);
+    background-image: url("./images/cen/background.png");
+    background-size: auto 100%;
+    background-position: bottom;
     height: 50%;
     width: 50%;
-}
-
-#top-right{
-    background: yellowgreen;
-}
-#top-left{
-    background: pink;
-}
-#bottom-left{
-    background: rgb(31, 137, 179);
-}
-#bottom-right{
-    background: rgb(179, 31, 31);
+    overflow:hidden;
+    animation: background-animation 10s infinite linear;
 }
 
 .dino{
-    margin-left: 50px;
-    margin-bottom: 7vh;
-    bottom: 0;
-    width: 60px;
-    height: 80px;
-    background: black;
+    position: absolute;
+    margin-left: 4vw;
+    margin-bottom: var(--height-dino);
+    width: 2.6vw;
+    /*animation: jump-animation 1.5s infinite ease-in-out;*/
+}
+
+.dino img{
+    width: 3vw;
+}
+
+.obstacle{
+    position: absolute;
+    opacity: 80%;
+    margin-bottom: 8.5vh;
+    width: 2.6vw;
+    animation: obstacle-animation 4s linear infinite;
+}
+.obstacle img{
+    width: 3vw;
+}
+
+@keyframes obstacle-animation {
+    0%{
+        margin-left: 100%;
+    }
+    100%{
+        margin-left: -6%;
+    }
+}
+
+
+#top-right{
+    background-color: rgb(255, 255, 215);
+}
+#top-left{
+    background-color: rgb(205, 249, 255);
+}
+#bottom-left{
+    background-color: rgb(225, 255, 220);
+}
+#bottom-right{
+    background-color: rgb(255, 231, 254);
+}
+
+
+@keyframes background-animation {
+    0%{
+        background-position: left;
+    }
+    100%{
+        background-position: right;
+    }
+}
+
+@keyframes jump-animation {
+    0%{
+        margin-bottom: var(--height-dino);
+    }
+    45%{
+        margin-bottom: var(--heightJUMP-dino);
+    }
+    97%{
+        transform: scaleY(100%);
+        margin-bottom: var(--height-dino);
+    }
+    100%{
+        transform: scaleY(60%);
+        margin-bottom: var(--height-dino);
+    }
+}
+
+
+
+@media(max-height: 512px){
+    body{
+        display: flex;
+        justify-content: end;
+        align-items: start;
+    }
+    .container{
+        width: 1700px;
+        height: 470px;
+    }
+
+}
+@media (max-width: 1440px) {
+    .container {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+}
+
+@media(max-width: 620px){
+    :root {
+        --height-dino: 3.6vh;
+        --heightJUMP-dino: 14vh;
+    }
+    body{
+        display: flex;
+        justify-content: end;
+        align-items: start;
+    }
+    .container{
+        flex-direction: column;
+        height: 100vh;
+    }
+    .dino{
+        margin-left: 4vw;
+        margin-bottom: var(--height-dino);
+        width: 2.6vw;
+    }
+    .dino img{
+        width: 8vw;
+    }
+    .screen{
+        width: 100vw;
+        height: 25vh;
+    }
+    .obstacle{
+        margin-bottom: 4.1vh;
+        width: 6vw;
+        animation: obstacle-animation 4s linear infinite;
+    }
+    .obstacle img{
+        width: 8vw;
+    }
 }
