@@ -1,5 +1,7 @@
+@import url('https://fonts.cdnfonts.com/css/gameplay');
+
 :root {
-    --border-color: rgb(0, 0, 0);
+    --border-color: rgb(87, 87, 87);
     --height-dino: 8vh;
     --heightJUMP-dino: 30vh;
 }
@@ -27,16 +29,65 @@ body{
     box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.178);
 }
 .screen{
+    position: relative;
     align-items: flex-end;
     display: flex;
     box-shadow: -5px 0px 0px var(--border-color), 5px -5px 0px var(--border-color), -5px -5px 0px var(--border-color),  5px 5px 0px var(--border-color),  0px 5px 0px var(--border-color);
     background-image: url("./images/background.png");
-    background-size:cover;
-    background-position-x: 0;
+    background-size: auto 100%;
+    background-position: bottom;
     height: 50%;
     width: 50%;
+    overflow:hidden;
     animation: background-animation 10s infinite linear;
 }
+
+.dino{
+    position: absolute;
+    margin-left: 4vw;
+    margin-bottom: var(--height-dino);
+    width: 2.6vw;
+    /*animation: jump-animation 1.5s infinite ease-in-out;*/
+}
+
+.dino img{
+    width: 3vw;
+}
+
+.obstacle{
+    position: absolute;
+    opacity: 80%;
+    margin-bottom: 8.5vh;
+    width: 2.6vw;
+    animation: obstacle-animation 4s linear infinite;
+}
+.obstacle img{
+    width: 3vw;
+}
+
+@keyframes obstacle-animation {
+    0%{
+        margin-left: 100%;
+    }
+    100%{
+        margin-left: -6%;
+    }
+}
+
+
+#top-right{
+    background-color: rgb(255, 255, 215);
+}
+#top-left{
+    background-color: rgb(205, 249, 255);
+}
+#bottom-left{
+    background-color: rgb(225, 255, 220);
+}
+#bottom-right{
+    background-color: rgb(255, 231, 254);
+}
+
 
 @keyframes background-animation {
     0%{
@@ -51,10 +102,10 @@ body{
     0%{
         margin-bottom: var(--height-dino);
     }
-    40%{
+    45%{
         margin-bottom: var(--heightJUMP-dino);
     }
-    95%{
+    97%{
         transform: scaleY(100%);
         margin-bottom: var(--height-dino);
     }
@@ -64,28 +115,7 @@ body{
     }
 }
 
-.dino{
-    margin-left: 4vw;
-    margin-bottom: var(--height-dino);
-    width: 2.6vw;
-    /*animation: jump-animation 1s infinite ease-in;*/
-}
-.dino img{
-    width: 3vw;
-}
 
-#top-right{
-    background-color: rgb(255, 255, 215);
-}
-#top-left{
-    background-color: rgb(205, 249, 255);
-}
-#bottom-left{
-    background-color: rgb(225, 255, 220);
-}
-#bottom-right{
-    background-color: rgb(255, 231, 254);
-}
 
 @media(max-height: 512px){
     body{
@@ -109,7 +139,6 @@ body{
 
 @media(max-width: 620px){
     :root {
-        --border-color: rgb(0, 0, 0);
         --height-dino: 3.6vh;
         --heightJUMP-dino: 14vh;
     }
@@ -134,5 +163,12 @@ body{
         width: 100vw;
         height: 25vh;
     }
-
+    .obstacle{
+        margin-bottom: 4.1vh;
+        width: 6vw;
+        animation: obstacle-animation 4s linear infinite;
+    }
+    .obstacle img{
+        width: 8vw;
+    }
 }
