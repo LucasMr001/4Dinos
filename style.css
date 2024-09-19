@@ -1,5 +1,7 @@
 :root {
     --border-color: rgb(0, 0, 0);
+    --height-dino: 8vh;
+    --heightJUMP-dino: 30vh;
 }
 
 *{
@@ -8,43 +10,113 @@
 }
 
 body{
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #202020;
     height: 100vh;
+    width: 100%;
 }
 
 .container{
     display: flex;
     flex-wrap: wrap;
-    height: 100vh;
-    background: purple;
+    width: 1700px;
+    height: 96vh;
+    margin: 2%;
+    box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.178);
 }
 .screen{
     align-items: flex-end;
     display: flex;
-    box-shadow: -5px 0px 0px var(--border-color), 5px -5px 0px var(--border-color), -5px -5px 0px var(--border-color);
-    background: red;
+    box-shadow: -5px 0px 0px var(--border-color), 5px -5px 0px var(--border-color), -5px -5px 0px var(--border-color),  5px 5px 0px var(--border-color),  0px 5px 0px var(--border-color);
+    background-image: url("./images/background.png");
+    background-size:cover;
+    background-position-x: 0;
     height: 50%;
     width: 50%;
+    animation: background-animation 10s infinite linear;
 }
 
-#top-right{
-    background: yellowgreen;
+@keyframes background-animation {
+    0%{
+        background-position: left;
+    }
+    100%{
+        background-position: right;
+    }
 }
-#top-left{
-    background: pink;
-}
-#bottom-left{
-    background: rgb(31, 137, 179);
-}
-#bottom-right{
-    background: rgb(179, 31, 31);
+
+@keyframes jump-animation {
+    0%{
+        margin-bottom: var(--height-dino);
+    }
+    40%{
+        margin-bottom: var(--heightJUMP-dino);
+    }
+    95%{
+        transform: scaleY(100%);
+        margin-bottom: var(--height-dino);
+    }
+    100%{
+        transform: scaleY(60%);
+        margin-bottom: var(--height-dino);
+    }
 }
 
 .dino{
-    margin-left: 50px;
-    margin-bottom: 7vh;
+    margin-left: 4vw;
+    margin-bottom: var(--height-dino);
     bottom: 0;
-    width: 60px;
-    height: 80px;
-    background: black;
+    width: 2.6vw;
+    /*animation: jump-animation 1s infinite ease-in;*/
+}
+.dino img{
+    width: 3vw;
+}
+
+/*#player1{
+    background: rgba(255, 13, 13, 0.164);
+}
+#player2{
+    background: rgba(255, 0, 0, 0.253);
+}
+#player3{
+    background: rgba(252, 71, 71, 0.288);
+}
+#player4{
+    background: rgba(255, 0, 0, 0.26);
+}*/
+
+#top-right{
+    background-color: rgb(255, 255, 215);
+}
+#top-left{
+    background-color: rgb(205, 249, 255);
+}
+#bottom-left{
+    background-color: rgb(225, 255, 220);
+}
+#bottom-right{
+    background-color: rgb(255, 231, 254);
+}
+
+@media(max-height: 512px){
+    body{
+        display: flex;
+        justify-content: end;
+        align-items: start;
+    }
+    .container{
+        width: 1700px;
+        height: 470px;
+    }
+
+}
+@media (max-width: 1440px) {
+    .container {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
 }
