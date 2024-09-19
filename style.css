@@ -1,0 +1,50 @@
+:root {
+    --border-color: rgb(0, 0, 0);
+}
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    position: relative;
+    height: 100vh;
+}
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+    background: purple;
+}
+.screen{
+    align-items: flex-end;
+    display: flex;
+    box-shadow: -5px 0px 0px var(--border-color), 5px -5px 0px var(--border-color), -5px -5px 0px var(--border-color);
+    background: red;
+    height: 50%;
+    width: 50%;
+}
+
+#top-right{
+    background: yellowgreen;
+}
+#top-left{
+    background: pink;
+}
+#bottom-left{
+    background: rgb(31, 137, 179);
+}
+#bottom-right{
+    background: rgb(179, 31, 31);
+}
+
+.dino{
+    margin-left: 50px;
+    margin-bottom: 7vh;
+    bottom: 0;
+    width: 60px;
+    height: 80px;
+    background: black;
+}
