@@ -9,6 +9,7 @@
 *{
     padding: 0;
     margin: 0;
+    user-select: none;
 }
 
 body{
@@ -47,7 +48,6 @@ body{
     margin-left: 4vw;
     margin-bottom: var(--height-dino);
     width: 2.6vw;
-    /*animation: jump-animation 1.5s infinite ease-in-out;*/
 }
 
 .dino img{
@@ -59,7 +59,6 @@ body{
     opacity: 80%;
     margin-bottom: 8.5vh;
     width: 2.6vw;
-    animation: obstacle-animation 4s linear infinite;
 }
 .obstacle img{
     width: 3vw;
@@ -102,15 +101,19 @@ body{
     0%{
         margin-bottom: var(--height-dino);
     }
-    45%{
+    30%{
+        margin-bottom: var(--heightJUMP-dino -3vh);
+    }
+    40%{
+        transform: rotate(-10deg);
         margin-bottom: var(--heightJUMP-dino);
     }
-    97%{
-        transform: scaleY(100%);
+    80%{
+        transform: rotate(10deg);
         margin-bottom: var(--height-dino);
     }
     100%{
-        transform: scaleY(60%);
+        transform: rotateX(45deg);
         margin-bottom: var(--height-dino);
     }
 }
@@ -140,7 +143,7 @@ body{
 @media(max-width: 620px){
     :root {
         --height-dino: 3.6vh;
-        --heightJUMP-dino: 14vh;
+        --heightJUMP-dino: 19vh;
     }
     body{
         display: flex;
