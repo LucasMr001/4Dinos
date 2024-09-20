@@ -121,10 +121,10 @@ function Adaptativo_vertical(){
     let flexDirection = window.getComputedStyle(container).flexDirection;
     if(flexDirection === 'column'){
         /// responsivo para celulares
-        screen1.addEventListener('click', ()=> {jump(dino1)})
-        screen2.addEventListener('click', ()=> {jump(dino2)})
-        screen3.addEventListener('click', ()=> {jump(dino3)})
-        screen4.addEventListener('click', ()=> {jump(dino4)})
+        screen1.addEventListener('touchstart', ()=> {jump(dino1)})
+        screen2.addEventListener('touchstart', ()=> {jump(dino2)})
+        screen3.addEventListener('touchstart', ()=> {jump(dino3)})
+        screen4.addEventListener('touchstart', ()=> {jump(dino4)})
     }
 
 }
