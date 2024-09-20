@@ -82,7 +82,7 @@ function pararAnimações(screen) {
     const gameOverTela = document.createElement('div');
     screen.appendChild(gameOverTela);
     gameOverTela.setAttribute('class', 'gameOverTela');
-    gameOverTela.innerHTML = `Fim de Jogo! score: ${scores[screens.indexOf(screen)].innerHTML}</small>`;
+    gameOverTela.innerHTML = `Fim de Jogo! score: ${scores[screens.indexOf(screen)].innerHTML}`;
 }
 
 function chamarCactus(screen, playerIndex) {
