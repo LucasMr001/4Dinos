@@ -64,7 +64,7 @@ body{
 
 .obstacle{
     position: absolute;
-    opacity: 80%;
+    opacity: 90%;
     margin-bottom: 8.5vh;
     width: 2.5vw;
 }
@@ -169,7 +169,7 @@ body{
         height: 100vh;
     }
     .dino{
-        margin-left: 4vw;
+        margin-left: 6vw;
         margin-bottom: var(--height-dino);
         width: 6.5vw;
     }
@@ -192,5 +192,9 @@ body{
     .score{
         font-size: 15px;
         opacity: 70%;
+    }
+    .gameOverTela{
+        font-size: 100%;
+
     }
 }
