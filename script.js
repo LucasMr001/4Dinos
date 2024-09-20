@@ -8,11 +8,15 @@ const dino1 = document.getElementById('player1');
 const dino2 = document.getElementById('player2');
 const dino3 = document.getElementById('player3');
 const dino4 = document.getElementById('player4');
-let velaux = 20;
+const score1 = document.getElementById('s1');
+const score2 = document.getElementById('s2');
+const score3 = document.getElementById('s3');
+const score4 = document.getElementById('s4');
+let score = 0;
+let vel = 3500;
 
 
 function escutaTeclado(event){
-    console.log(event.code)
     let tecla = event.code;
     if(tecla == 'KeyQ'){
         jump(dino1);
@@ -31,55 +35,95 @@ function escutaTeclado(event){
 
 function jump(dino){
     if(dino.style.animation == ''){
-        dino.style.animation = `jump-animation 1s ease-in-out`
+        dino.style.animation = jump-animation 0.7s ease-in-out
         setTimeout(()=>{
             dino.style.animation = ''
-        },800)
+        },700)
     }
 }
 
-function geraCactoAleat(){
+function geraIMGAleat(){
     let num = Math.floor(Math.random() * 3) + 1;
-    console.log(`cactus${num}.gif`)
-    return `cactus${num}.gif`
+    return cactus${num}.gif
 }
 
-function gerarCacto(screen, vel){
-    let img = geraCactoAleat()
+function gerarCacto(screen){
+    let img = geraIMGAleat();
     let obstacle = document.createElement('div');
     obstacle.setAttribute('class', 'obstacle');
     screen.appendChild(obstacle)
 
     let cacto = document.createElement('img')
-    cacto.setAttribute('src', `./images/cactus/${img}`);
+    cacto.setAttribute('src', ./images/cactus/${img});
     obstacle.appendChild(cacto)
 
     if(obstacle.style.animation == ''){
-        obstacle.style.animation = `obstacle-animation ${vel}ms linear infinite`
+        obstacle.style.animation = obstacle-animation ${vel}ms linear infinite;
         setTimeout(()=>{
             obstacle.style.animation = ''
-            obstacle.removeChild(cacto)
-            gerarCacto(screen, vel);
+            screen.removeChild(obstacle)
         },vel)
     }
 }
-
-function chamarCactus(){
-    gerarCacto(screen1, 4000)
-    gerarCacto(screen2, 3000)
-    gerarCacto(screen3, 2000)
-    gerarCacto(screen4, 1000)
+function Booleano(){
+    return Math.random() < 0.5;
 }
 
-chamarCactus()
+function chamarCactus(){
+    if(vel > 1000){gerarCacto(screen1)}
+    if(Booleano()){
+        setTimeout(()=>{
+            gerarCacto(screen1)
+        },vel/2)
+    }
+    if(vel > 1000){gerarCacto(screen2)}
+    if(Booleano()){
+        setTimeout(()=>{
+            gerarCacto(screen2)
+        },vel/2)
+    }
+    if(vel > 1000){gerarCacto(screen3)}
+    if(Booleano()){
+        setTimeout(()=>{
+            gerarCacto(screen3)
+        },vel/2)
+    }
+    if(vel > 1000){gerarCacto(screen4)}
+    if(Booleano()){
+        setTimeout(()=>{
+            gerarCacto(screen4)
+        },vel/2)
+    }
+    setTimeout(()=>{
+        chamarCactus()
+    }, vel)
+}
 
+setInterval(() => {
+    ///aumenta a velocidade com o tempo
+    vel-=100;
+}, 2000);
 
-if(container.style.flexDirection == 'column'){
-    /// responsivo para celulares
-    screen1.addEventListener('click', ()=> {jump(dino1)})
-    screen2.addEventListener('click', ()=> {jump(dino2)})
-    screen3.addEventListener('click', ()=> {jump(dino3)})
-    screen4.addEventListener('click', ()=> {jump(dino4)})
+setInterval(() => {
+    score++;
+    score1.innerText = score;
+    score2.innerText = score;
+    score3.innerText = score;
+    score4.innerText = score;
+},100);
+
+function Adaptativo(){
+    let flexDirection = window.getComputedStyle(container).flexDirection;
+    if(flexDirection === 'column'){
+        /// responsivo para celulares
+        screen1.addEventListener('click', ()=> {jump(dino1)})
+        screen2.addEventListener('click', ()=> {jump(dino2)})
+        screen3.addEventListener('click', ()=> {jump(dino3)})
+        screen4.addEventListener('click', ()=> {jump(dino4)})
+    }
+
 }
 
 document.addEventListener('keydown', escutaTeclado)
+chamarCactus()
+Adaptativo()
