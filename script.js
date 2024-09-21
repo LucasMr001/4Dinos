@@ -54,8 +54,13 @@ function gerarCacto(screen, playerIndex) {
         const larguraPaiPixels = screen.clientWidth;
         const marginLeftPercentual = (marginLeftPixels / larguraPaiPixels) * 100;
         const dinoPosition = +window.getComputedStyle(dinossauros[playerIndex]).marginBottom.replace('px', '');
+        let checavertical = parseInt(window.getComputedStyle(container).width)
 
-        if (marginLeftPercentual <= 14 && marginLeftPercentual >= 6 && dinoPosition <= 130) {
+        if (checavertical > '620' && marginLeftPercentual <= 14 && marginLeftPercentual >= 6 && dinoPosition <= 130) {
+            clearInterval(intervaloColisao);
+            pararAnimações(screen); // Passa apenas a tela do jogador que colidiu
+            estadosJogadores[playerIndex] = 'perdeu';
+        } else if(marginLeftPercentual <= 12 && marginLeftPercentual >= 6 && dinoPosition <= 90) {
             clearInterval(intervaloColisao);
             pararAnimações(screen); // Passa apenas a tela do jogador que colidiu
             estadosJogadores[playerIndex] = 'perdeu';

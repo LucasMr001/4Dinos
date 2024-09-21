@@ -5,6 +5,9 @@
 ![dino3](./images/dinos/pinkdino.gif)
 ![dino4](./images/dinos/yellowdino.gif)
 
+## Teclas:
+  Q P X M
+  
 ## Descrição
 
 Este é um jogo inspirado no clássico jogo do dinossauro do Google, mas com o diferencial: até **4 jogadores podem competir simultaneamente**! Cada jogador controla um dinossauro de uma cor diferente, e os sprites são totalmente autorais, proporcionando uma experiência única e divertida.
