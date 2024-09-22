@@ -22,8 +22,28 @@ const scores = [
 let estadosJogadores = ['jogando', 'jogando', 'jogando', 'jogando'];
 let scoresAtual = [0, 0, 0, 0];
 let vel = 3000;
-let jumpSound = new Audio('../sounds/jump.m4a'); jumpSound.volume = 0.1;
-let hitSound = new Audio('../sounds/hit.m4a'); hitSound.volume = 0.15;
+let jumpSound;
+let hitSound;
+
+async function loadSound(url) {
+    return new Promise((resolve) => {
+        const audio = new Audio(url);
+        audio.addEventListener('canplaythrough', () => {
+            resolve(audio);
+        });
+        audio.load();
+    });
+}
+
+async function setupSounds() {
+    jumpSound = await loadSound('../sounds/jump.m4a');
+    jumpSound.volume = 0.1;
+
+    hitSound = await loadSound('../sounds/hit.m4a');
+    hitSound.volume = 0.15;
+}
+
+setupSounds();
 
 function jump(dino) {
     if (dino.style.animation === '') {

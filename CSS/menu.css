@@ -41,6 +41,13 @@ body {
     overflow: hidden;
     animation: background-animation 10s infinite linear;
 }
+.arrow{
+    margin-right: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-left: -170px;
+}
 
 .container-menu .titulo {
     color: #5ABBF3;
