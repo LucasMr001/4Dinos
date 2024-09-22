@@ -22,13 +22,25 @@ const scores = [
 let estadosJogadores = ['jogando', 'jogando', 'jogando', 'jogando'];
 let scoresAtual = [0, 0, 0, 0];
 let vel = 3000;
+let jumpSound = new Audio('sounds/jump.m4a'); jumpSound.volume = 0.1;
+let hitSound = new Audio('sounds/hit.m4a'); hitSound.volume = 0.15;
 
 function jump(dino) {
     if (dino.style.animation === '') {
+        sounds('jump')
         dino.style.animation = `jump-animation 0.7s ease-in-out`;
         setTimeout(() => {
             dino.style.animation = '';
         }, 650);
+    }
+}
+function sounds(params){
+    if(params == 'jump'){
+        jumpSound.currentTime = 0;
+        jumpSound.play();
+    } else if (params == 'hit'){
+        hitSound.currentTime = 0;
+        hitSound.play();
     }
 }
 
@@ -57,10 +69,12 @@ function gerarCacto(screen, playerIndex) {
         let checavertical = parseInt(window.getComputedStyle(container).width)
 
         if (checavertical > '620' && marginLeftPercentual <= 14 && marginLeftPercentual >= 6 && dinoPosition <= 130) {
+            sounds('hit')
             clearInterval(intervaloColisao);
             pararAnimações(screen); // Passa apenas a tela do jogador que colidiu
             estadosJogadores[playerIndex] = 'perdeu';
         } else if(marginLeftPercentual <= 12 && marginLeftPercentual >= 6 && dinoPosition <= 90) {
+            sounds('hit')
             clearInterval(intervaloColisao);
             pararAnimações(screen); // Passa apenas a tela do jogador que colidiu
             estadosJogadores[playerIndex] = 'perdeu';
@@ -133,12 +147,12 @@ function escutaTeclado(event) {
 document.addEventListener('keypress', escutaTeclado);
 
 Adaptativo_vertical();
-
+// Ativa o touch para cada tela
 function Adaptativo_vertical() {
     let flexDirection = window.getComputedStyle(container).flexDirection;
     if (flexDirection === 'column') {
         screens.forEach((screen, index) => {
-            screen.addEventListener('touchstart', () => { jump(dinossauros[index]) });
+            screen.addEventListener('touchstart', () => { if(estadosJogadores[index]=='jogando'){jump(dinossauros[index]) }});
         });
     }
 }

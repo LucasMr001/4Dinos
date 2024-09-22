@@ -183,7 +183,7 @@ body{
         height: 25vh;
     }
     .obstacle{
-        margin-bottom: 4.0vh;
+        margin-bottom: 4.1vh;
         width: 6vw;
         animation: obstacle-animation 4s linear infinite;
     }
@@ -198,4 +198,20 @@ body{
         font-size: 100%;
 
     }
+    @keyframes jump-animation {
+    0%{
+        margin-bottom: var(--height-dino);
+    }
+    30%{
+        transform: rotate(-10deg);
+        margin-bottom: var(--heightJUMP-dino);
+    }
+    50%{
+        margin-bottom: calc(var(--heightJUMP-dino) + 1vh);
+    }
+    100%{
+        transform: rotate(10deg);
+        margin-bottom: var(--height-dino);
+    }
+}
 }
