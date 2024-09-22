@@ -10,6 +10,13 @@
     padding: 0;
     margin: 0;
     user-select: none;
+
+}
+
+img {
+    pointer-events: auto;
+    user-drag: none;
+    -webkit-user-drag: none;
 }
 
 body{
@@ -29,13 +36,16 @@ body{
     height: 96vh;
     margin: 2%;
     box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.178);
+    overflow: hidden;
+    border-radius: 20px;
+    border: 5px solid var(--border-color);
 }
 .screen{
     position: relative;
     align-items: flex-end;
     display: flex;
     box-shadow: -5px 5px 0px var(--border-color), 5px -5px 0px var(--border-color), -5px -5px 0px var(--border-color),  5px 5px 0px var(--border-color),  0px 5px 0px var(--border-color);
-    background-image: url("./images/cen/background.png");
+    background-image: url("../images/cen/background.png");
     background-size: auto 100%;
     background-position: bottom;
     height: 50%;
@@ -77,6 +87,18 @@ body{
     }
     100%{
         margin-left: -6%;
+    }
+}
+
+@keyframes hit{
+    0%{
+        filter: contrast(200%);
+    }
+    50%{
+        filter: contrast(0%);
+    }
+    100%{
+        filter: contrast(200%)
     }
 }
 
@@ -143,6 +165,8 @@ body{
         align-items: start;
     }
     .container{
+        border-radius: 0px;
+        border: none;
         width: 1700px;
         height: 470px;
     }
@@ -150,6 +174,8 @@ body{
 }
 @media (max-width: 1440px) {
     .container {
+        border-radius: 0px;
+        border: none;
         width: 100%;
         height: 100%;
         margin: 0;
@@ -162,13 +188,16 @@ body{
         --heightJUMP-dino: 17vh;
     }
     body{
+        height: 100vh;
         display: flex;
+        flex-direction: column;
         justify-content: end;
         align-items: start;
     }
     .container{
+        border-radius: 0px;
         flex-direction: column;
-        height: 100vh;
+        height: 100%;
     }
     .dino{
         margin-left: 6vw;
@@ -179,13 +208,14 @@ body{
         width: 8vw;
     }
     .screen{
-        width: 100vw;
-        height: 25vh;
+        border-radius: 5px solid white;
+        width: 100%;
+        height: 25%;
     }
     .obstacle{
         margin-bottom: 4.1vh;
         width: 6vw;
-        animation: obstacle-animation 4s linear infinite;
+        animation: obstacle-animation 4s linear;
     }
     .obstacle img{
         width: 8vw;

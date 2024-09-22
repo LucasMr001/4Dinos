@@ -49,7 +49,8 @@ function geraIMGAleat() {
     return `cactus${num}.gif`;
 }
 
-function gerarCacto(screen, playerIndex) {
+function gerarCacto(screen, playerIndex){
+    if(estadosJogadores[playerIndex] == 'jogando'){
     let img = geraIMGAleat();
     let newObstacle = document.createElement('div');
     newObstacle.setAttribute('class', 'obstacle');
@@ -61,26 +62,27 @@ function gerarCacto(screen, playerIndex) {
 
     // Verifica colisão
     const intervaloColisao = setInterval(() => {
-        const estilo = getComputedStyle(newObstacle);
-        const marginLeftPixels = parseFloat(estilo.marginLeft);
-        const larguraPaiPixels = screen.clientWidth;
-        const marginLeftPercentual = (marginLeftPixels / larguraPaiPixels) * 100;
-        const dinoPosition = +window.getComputedStyle(dinossauros[playerIndex]).marginBottom.replace('px', '');
-        let checavertical = parseInt(window.getComputedStyle(container).width)
+    const estilo = getComputedStyle(newObstacle);
+    const marginLeftPixels = parseFloat(estilo.marginLeft);
+    const larguraPaiPixels = screen.clientWidth;
+    const marginLeftPercentual = (marginLeftPixels / larguraPaiPixels) * 100;
+    const dinoPosition = +window.getComputedStyle(dinossauros[playerIndex]).marginBottom.replace('px', '');
+    let checavertical = parseInt(window.getComputedStyle(container).width)
 
-        if (checavertical > '620' && marginLeftPercentual <= 14 && marginLeftPercentual >= 6 && dinoPosition <= 130) {
-            sounds('hit')
+        //// colisão em dispositivos mobile
+        if (checavertical > '620' && marginLeftPercentual <= 14 && marginLeftPercentual >= 4 && dinoPosition <= 130) {
             clearInterval(intervaloColisao);
-            pararAnimações(screen); // Passa apenas a tela do jogador que colidiu
+            pararAnimações(screen);
             estadosJogadores[playerIndex] = 'perdeu';
+            sounds('hit')
         } else if(marginLeftPercentual <= 12 && marginLeftPercentual >= 6 && dinoPosition <= 90) {
-            sounds('hit')
             clearInterval(intervaloColisao);
-            pararAnimações(screen); // Passa apenas a tela do jogador que colidiu
+            pararAnimações(screen);
             estadosJogadores[playerIndex] = 'perdeu';
+            sounds('hit')
         }
     }, 100);
-
+    if(estadosJogadores[playerIndex] == 'jogando'){
     newObstacle.style.animation = `obstacle-animation ${vel}ms linear infinite`;
     setTimeout(() => {
         if (estadosJogadores[playerIndex] === 'jogando') {
@@ -88,6 +90,8 @@ function gerarCacto(screen, playerIndex) {
             screen.removeChild(newObstacle);
         }
     }, vel);
+    }
+    }
 }
 
 function pararAnimações(screen) {
@@ -95,7 +99,6 @@ function pararAnimações(screen) {
     elementosComAnimacao.forEach(elemento => {
         elemento.style.animationPlayState = 'paused';
     });
-
     screen.style.animationPlayState = 'paused';
 
     const gameOverTela = document.createElement('div');
@@ -104,18 +107,16 @@ function pararAnimações(screen) {
     gameOverTela.innerHTML = `Fim de Jogo! score: ${scores[screens.indexOf(screen)].innerHTML}`;
 }
 
-function chamarCactus(screen, playerIndex) {
-    if (estadosJogadores[playerIndex] === 'jogando') {
+function chamarCactos(screen, playerIndex) {
         gerarCacto(screen, playerIndex);
-        if (Math.random() < 0.5 && vel > 1000) {
+        if (Math.random() < 0.5 && vel > 1000){
             setTimeout(() => {
                 gerarCacto(screen, playerIndex);
             }, vel / 2);
         }
         setTimeout(() => {
-            chamarCactus(screen, playerIndex);
+            chamarCactos(screen, playerIndex);
         }, vel);
-    }
 }
 
 function pontos_vel() {
@@ -159,5 +160,5 @@ function Adaptativo_vertical() {
 
 // Inicia o jogo chamando cactos para cada jogador
 screens.forEach((screen, index) => {
-    chamarCactus(screen, index);
+    chamarCactos(screen, index);
 });
