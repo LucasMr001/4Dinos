@@ -103,16 +103,16 @@ body{
 
 
 #top-right{
-    background-color: rgb(255, 255, 215);
+    background-color: #ffffd7;
 }
 #top-left{
-    background-color: rgb(205, 249, 255);
+    background-color: #cdf9ff;
 }
 #bottom-left{
-    background-color: rgb(225, 255, 220);
+    background-color: #e1ffdc;
 }
 #bottom-right{
-    background-color: rgb(255, 231, 254);
+    background-color: #ffe7fe;
 }
 .gameOverTela{
     top: 0;
