@@ -1,0 +1,252 @@
+@import url('https://fonts.cdnfonts.com/css/gameplay');
+
+:root {
+    --shadow-color: rgb(0, 0, 0);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    user-select: none;
+}
+
+body {
+    font-family: gameplay;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: auto 100%;
+    background-position: bottom;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.container-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../images/cen/background.png");
+    background-size: auto 100%;
+    background-position: bottom;
+    overflow: hidden;
+    animation: background-animation 10s infinite linear;
+}
+
+.container-menu .titulo {
+    color: rgb(228, 119, 30);
+    font-size: 80px;
+    text-shadow: 0px 1px 0px var(--shadow-color), 0px 3px 0px var(--shadow-color),
+                 0px 4px 0px var(--shadow-color), 0px 5px 0px var(--shadow-color),
+                 0px 6px 0px var(--shadow-color), 0px 7px 0px var(--shadow-color),
+                 0px 8px 0px var(--shadow-color), 0px 9px 0px var(--shadow-color),
+                 0px 10px 0px var(--shadow-color), -5px -5px 0px var(--shadow-color),
+                 5px -5px 0px var(--shadow-color), -5px 5px 0px var(--shadow-color),
+                 6px 6px 0px var(--shadow-color);
+    margin: 30px;
+    animation: titulo-animation 2s infinite ease-in-out;
+    transition: 1s ease-in-out;
+}
+
+.container-menu .titulo:hover {
+    transform: scale(1.5);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.butttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: 1s ease-in-out;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    border: none;
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: surgindo 1s ease-out;
+}
+
+button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.container-menu img {
+    width: 95%;
+    animation: flutuando 2s infinite ease-in-out;
+}
+
+.container-menu img:hover {
+    width: 95%;
+}
+
+@keyframes titulo-animation {
+    0% {
+        rotate: -1deg;
+        transform: scale(1.0);
+    }
+    50% {
+        rotate: 2deg;
+        transform: scale(1.05);
+        text-shadow: 0px -2px 0px var(--shadow-color), 0px -3px 0px var(--shadow-color),
+                     0px -4px 0px var(--shadow-color), 0px -5px 0px var(--shadow-color),
+                     0px -6px 0px var(--shadow-color), 0px -7px 0px var(--shadow-color),
+                     0px -8px 0px var(--shadow-color), 0px -9px 0px var(--shadow-color),
+                     0px -10px 0px var(--shadow-color), -6px -6px 0px var(--shadow-color),
+                     6px -6px 0px var(--shadow-color), -6px 6px 0px var(--shadow-color),
+                     6px 6px 0px var(--shadow-color);
+    }
+    100% {
+        rotate: -1deg;
+        transform: scale(1.0);
+    }
+}
+
+@keyframes flutuando {
+    0% {
+        margin-top: 10px;
+    }
+    50% {
+        margin-top: 0px;
+    }
+    100% {
+        margin-top: 10px;
+    }
+}
+
+@keyframes surgindo {
+    0% {
+        rotate: 20deg;
+        margin-top: 500px;
+        transform: scale(0.1);
+    }
+    50% {
+        margin-top: -10px;
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes background-animation {
+    0% {
+        background-position: left;
+    }
+    100% {
+        background-position: right;
+    }
+}
+
+.cactos {
+    bottom: 18.5vh;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 200vw;
+    height: 10vh;
+    animation: obstacle-animation 4s infinite linear;
+}
+
+.cactos img {
+    width: 4vw;
+}
+
+@keyframes obstacle-animation {
+    0% {
+        margin-left: 0%;
+    }
+    100% {
+        margin-left: -130%;
+    }
+}
+
+.dinos {
+    bottom: 18.5vh;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 14vw;
+    height: 5vh;
+    animation: dinosmenu 8s infinite linear;
+}
+
+@keyframes dinosmenu {
+    0% {
+        margin-left: -130%;
+    }
+    100% {
+        margin-left: 100%;
+    }
+}
+
+@media(max-height: 512px) {
+    .dinos {
+        width: 10vw;
+    }
+    .container-menu .titulo {
+        scale: 0.95;
+    }
+    .cactos {
+        bottom: 15.5vh;
+        animation: obstacle-animation 3s infinite linear;
+    }
+    .cactos img {
+        height: 8vh;
+        width: auto;
+    }
+}
+
+@media (max-width: 1440px) {
+    .dinos {
+        width: 50vw;
+    }
+    .container-menu .titulo {
+        scale: 0.95;
+    }
+    .cactos {
+        bottom: 14.5vh;
+        animation: obstacle-animation 1.22s infinite linear;
+    }
+    .cactos img {
+        height: 6vh;
+        width: auto;
+    }
+}
+
+@media(max-width: 620px) {
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: start;
+    }
+    .dinos {
+        width: 50vw;
+    }
+    .container-menu .titulo {
+        scale: 0.95;
+    }
+    .cactos {
+        bottom: 14.5vh;
+        animation: obstacle-animation 1.22s infinite linear;
+    }
+    .cactos img {
+        height: 6vh;
+        width: auto;
+    }
+}

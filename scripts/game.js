@@ -22,8 +22,8 @@ const scores = [
 let estadosJogadores = ['jogando', 'jogando', 'jogando', 'jogando'];
 let scoresAtual = [0, 0, 0, 0];
 let vel = 3000;
-let jumpSound = new Audio('sounds/jump.m4a'); jumpSound.volume = 0.1;
-let hitSound = new Audio('sounds/hit.m4a'); hitSound.volume = 0.15;
+let jumpSound = new Audio('../sounds/jump.m4a'); jumpSound.volume = 0.1;
+let hitSound = new Audio('../sounds/hit.m4a'); hitSound.volume = 0.15;
 
 function jump(dino) {
     if (dino.style.animation === '') {
@@ -42,6 +42,10 @@ function sounds(params){
         hitSound.currentTime = 0;
         hitSound.play();
     }
+}
+
+function mutar(){
+    console.log('mutou')
 }
 
 function geraIMGAleat() {
