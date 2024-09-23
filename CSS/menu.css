@@ -140,7 +140,33 @@ button:hover {
         transform: scale(1.0);
     }
 }
+.cactos {
+    position: absolute;
+    bottom: 18.5vh;
+    display: flex;
+    justify-content: space-between;
+    width: 200%;
+    height: 10vh;
+    animation: obstacle-animation 4s infinite linear;
+}
+.cactos img {
+    width: 4vw;
+}
 
+img {
+    pointer-events: auto;
+    user-drag: none;
+    -webkit-user-drag: none;
+}
+.dinos {
+    position: absolute;
+    bottom: 18.5vh;
+    display: flex;
+    justify-content: space-between;
+    width: 14vw;
+    height: 5vh;
+    animation: dinosmenu 8s infinite linear;
+}
 @keyframes flutuando {
     0% {
         margin-top: 10px;
@@ -187,26 +213,6 @@ button:hover {
         background-position: right;
     }
 }
-
-.cactos {
-    position: absolute;
-    bottom: 18.5vh;
-    display: flex;
-    justify-content: space-between;
-    width: 200%;
-    height: 10vh;
-    animation: obstacle-animation 4s infinite linear;
-}
-
-.cactos img {
-    width: 4vw;
-}
-
-img {
-    pointer-events: auto;
-    user-drag: none;
-    -webkit-user-drag: none;
-}
 @keyframes obstacle-animation {
     0% {
         left: 0%;
@@ -216,15 +222,6 @@ img {
     }
 }
 
-.dinos {
-    position: absolute;
-    bottom: 18.5vh;
-    display: flex;
-    justify-content: space-between;
-    width: 14vw;
-    height: 5vh;
-    animation: dinosmenu 8s infinite linear;
-}
 
 @keyframes dinosmenu {
     0% {
