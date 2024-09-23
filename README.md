@@ -7,9 +7,9 @@
 
 ## Configurações Padrão de Teclas
 - 🟦 **Q**: Jogador 1
-- 🟩 **P**: Jogador 2 
-- 🟪 **X**: Jogador 3 
-- 🟨 **M**: Jogador 4 
+- 🟩 **P**: Jogador 2
+- 🟪 **X**: Jogador 3
+- 🟨 **M**: Jogador 4
 
 ## Descrição
 

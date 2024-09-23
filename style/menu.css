@@ -1,0 +1,289 @@
+@import url('https://fonts.cdnfonts.com/css/gameplay');
+
+:root {
+    --shadow-color: #18071f;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    user-select: none;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    position: relative;
+    font-family: gameplay;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: auto 100%;
+    background-position: bottom;
+    width: 100vw;
+    background: grey;
+}
+
+.container-menu {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../images/cen/background.png");
+    background-size: auto 100%;
+    background-position: bottom;
+    overflow: hidden;
+    animation: background-animation 10s infinite linear;
+}
+.arrow{
+    margin-right: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-left: -170px;
+}
+
+.container-menu .titulo {
+    color: #5ABBF3;
+    font-size: 80px;
+    text-shadow: 0px 1px 0px var(--shadow-color), 0px 3px 0px var(--shadow-color),
+                 0px 4px 0px var(--shadow-color), 0px 5px 0px var(--shadow-color),
+                 0px 6px 0px var(--shadow-color), 0px 7px 0px var(--shadow-color),
+                 0px 8px 0px var(--shadow-color), 0px 9px 0px var(--shadow-color),
+                 0px 10px 0px var(--shadow-color), -5px -5px 0px var(--shadow-color),
+                 5px -5px 0px var(--shadow-color), -5px 5px 0px var(--shadow-color),
+                 6px 6px 0px var(--shadow-color);
+    margin: 30px;
+    animation: titulo-animation 2s infinite ease-in-out;
+    transition: 1s ease-in-out;
+}
+
+.mute{
+    scale: 0.8;
+}
+.info{
+    scale: 0.6;
+}
+.container-menu .titulo:hover {
+    transform: scale(1.5);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.butttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: 1s ease-in-out;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    background: none;
+    border: none;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: surgindo 0.7s ease-out;
+}
+
+button:hover {
+    filter: brightness(200%);
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.container-menu img {
+    width: 95%;
+    animation: flutuando 2s infinite ease-in-out;
+}
+
+.container-menu img:hover {
+    width: 95%;
+}
+.container-cred{
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+@keyframes titulo-animation {
+    0% {
+        rotate: -1deg;
+        transform: scale(1.0);
+    }
+    50% {
+        rotate: 2deg;
+        transform: scale(1.05);
+        text-shadow: 2px -2px 0px var(--shadow-color), 3px -3px 0px var(--shadow-color),
+                     4px -4px 0px var(--shadow-color), 5px -5px 0px var(--shadow-color),
+                     6px -6px 0px var(--shadow-color), 7px -7px 0px var(--shadow-color),
+                     8px -8px 0px var(--shadow-color), 9px -9px 0px var(--shadow-color),
+                     0px -10px 0px var(--shadow-color), -6px -6px 0px var(--shadow-color),
+                     6px -6px 0px var(--shadow-color), -6px 6px 0px var(--shadow-color),
+                     6px 6px 0px var(--shadow-color);
+    }
+    100% {
+        rotate: -1deg;
+        transform: scale(1.0);
+    }
+}
+.cactos {
+    position: absolute;
+    bottom: 18.5vh;
+    display: flex;
+    justify-content: space-between;
+    width: 200%;
+    height: 10vh;
+    animation: obstacle-animation 4s infinite linear;
+}
+.cactos img {
+    width: 4vw;
+}
+
+img {
+    pointer-events: auto;
+    user-drag: none;
+    -webkit-user-drag: none;
+}
+.dinos {
+    position: absolute;
+    bottom: 18.5vh;
+    display: flex;
+    justify-content: space-between;
+    width: 14vw;
+    height: 5vh;
+    animation: dinosmenu 8s infinite linear;
+}
+@keyframes flutuando {
+    0% {
+        margin-top: 10px;
+    }
+    50% {
+        margin-top: 0px;
+    }
+    100% {
+        margin-top: 10px;
+    }
+}
+
+@keyframes surgindo {
+    0% {
+        rotate: 20deg;
+        margin-top: 500px;
+        transform: scale(0.1);
+    }
+    50% {
+        margin-top: -10px;
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes background-animation {
+    0% {
+        background-color: #e38df3;
+        background-position: left;
+    }
+    25%{
+        background-color: #5ABBF3;
+    }
+    50%{
+        background-color: #ece55f;
+    }
+    75% {
+        background-color: #5AF35A;
+    }
+    100%{
+        background-color: #e38df3;
+        background-position: right;
+    }
+}
+@keyframes obstacle-animation {
+    0% {
+        left: 0%;
+    }
+    100% {
+        left: -130%;
+    }
+}
+
+
+@keyframes dinosmenu {
+    0% {
+        left: -130%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+@media(max-height: 512px) {
+    .dinos {
+        width: 10vw;
+    }
+    .container-menu .titulo {
+        scale: 0.95;
+    }
+    .cactos {
+        bottom: 15.5vh;
+        animation: obstacle-animation 3s infinite linear;
+    }
+    .cactos img {
+        height: 8vh;
+        width: auto;
+    }
+}
+
+@media (max-width: 1440px) {
+    .dinos {
+        width: 50vw;
+    }
+    .container-menu .titulo {
+        scale: 0.95;
+    }
+    .cactos {
+        bottom: 14.5vh;
+        animation: obstacle-animation 1.22s infinite linear;
+    }
+    .cactos img {
+        height: 6vh;
+        width: auto;
+    }
+}
+
+@media(max-width: 620px) {
+    body {
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+    }
+    .dinos {
+        width: 50vw;
+    }
+    .container-menu .titulo {
+        scale: 0.95;
+    }
+    .cactos {
+        bottom: 14.5vh;
+        animation: obstacle-animation 1.22s infinite linear;
+    }
+    .cactos img {
+        height: 6vh;
+        width: auto;
+    }
+}
