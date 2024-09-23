@@ -1,3 +1,11 @@
+const buttons = document.querySelectorAll('button');
+let isMuted = false;
+let arrowdiv = document.createElement('div');
+arrowdiv.classList.add('arrow');
+let arrow = document.createElement('img');
+arrow.setAttribute('src', '../images/menu/seta.gif');
+arrowdiv.appendChild(arrow);
+
 const container = document.querySelector('.container');
 const telas = document.querySelectorAll('.screen');
 const screens = [
@@ -43,29 +51,41 @@ async function setupSounds() {
     hitSound.volume = 0.15;
 }
 
-setupSounds();
+setupSounds().then(() => {
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', () => {
+            jumpSound.currentTime = 0;
+            jumpSound.play();
+            button.appendChild(arrowdiv);
+        });
+    });
+});
 
 function jump(dino) {
     if (dino.style.animation === '') {
-        sounds('jump')
+        sounds('jump');
         dino.style.animation = `jump-animation 0.7s ease-in-out`;
         setTimeout(() => {
             dino.style.animation = '';
         }, 650);
     }
 }
-function sounds(params){
-    if(params == 'jump'){
+
+function sounds(action) {
+    if (action === 'jump') {
         jumpSound.currentTime = 0;
         jumpSound.play();
-    } else if (params == 'hit'){
+    } else if (action === 'hit') {
         hitSound.currentTime = 0;
         hitSound.play();
     }
 }
 
-function mutar(){
-    console.log('mutou')
+function mutar() {
+    isMuted = !isMuted;
+    jumpSound.muted = isMuted;
+    hitSound.muted = isMuted;
+    console.log(isMuted ? 'Muted' : 'Unmuted');
 }
 
 function geraIMGAleat() {
@@ -73,48 +93,47 @@ function geraIMGAleat() {
     return `cactus${num}.gif`;
 }
 
-function gerarCacto(screen, playerIndex){
-    if(estadosJogadores[playerIndex] == 'jogando'){
-    let img = geraIMGAleat();
-    let newObstacle = document.createElement('div');
-    newObstacle.setAttribute('class', 'obstacle');
-    screen.appendChild(newObstacle);
+function gerarCacto(screen, playerIndex) {
+    if (estadosJogadores[playerIndex] === 'jogando') {
+        let img = geraIMGAleat();
+        let newObstacle = document.createElement('div');
+        newObstacle.setAttribute('class', 'obstacle');
+        screen.appendChild(newObstacle);
 
-    let cacto = document.createElement('img');
-    cacto.setAttribute('src', `./images/cactus/${img}`);
-    newObstacle.appendChild(cacto);
+        let cacto = document.createElement('img');
+        cacto.setAttribute('src', `./images/cactus/${img}`);
+        newObstacle.appendChild(cacto);
 
-    // Verifica colisão
-    const intervaloColisao = setInterval(() => {
-    const estilo = getComputedStyle(newObstacle);
-    const marginLeftPixels = parseFloat(estilo.marginLeft);
-    const larguraPaiPixels = screen.clientWidth;
-    const marginLeftPercentual = (marginLeftPixels / larguraPaiPixels) * 100;
-    const dinoPosition = +window.getComputedStyle(dinossauros[playerIndex]).marginBottom.replace('px', '');
-    let checavertical = parseInt(window.getComputedStyle(container).width)
+        const intervaloColisao = setInterval(() => {
+            const estilo = getComputedStyle(newObstacle);
+            const marginLeftPixels = parseFloat(estilo.marginLeft);
+            const larguraPaiPixels = screen.clientWidth;
+            const marginLeftPercentual = (marginLeftPixels / larguraPaiPixels) * 100;
+            const dinoPosition = +window.getComputedStyle(dinossauros[playerIndex]).marginBottom.replace('px', '');
+            let checavertical = parseInt(window.getComputedStyle(container).width);
 
-        //// colisão em dispositivos mobile
-        if (checavertical > '620' && marginLeftPercentual <= 14 && marginLeftPercentual >= 4 && dinoPosition <= 130) {
-            clearInterval(intervaloColisao);
-            pararAnimações(screen);
-            estadosJogadores[playerIndex] = 'perdeu';
-            sounds('hit')
-        } else if(marginLeftPercentual <= 12 && marginLeftPercentual >= 6 && dinoPosition <= 90) {
-            clearInterval(intervaloColisao);
-            pararAnimações(screen);
-            estadosJogadores[playerIndex] = 'perdeu';
-            sounds('hit')
-        }
-    }, 100);
-    if(estadosJogadores[playerIndex] == 'jogando'){
-    newObstacle.style.animation = `obstacle-animation ${vel}ms linear infinite`;
-    setTimeout(() => {
+            if (checavertical > 620 && marginLeftPercentual <= 14 && marginLeftPercentual >= 4 && dinoPosition <= 130) {
+                clearInterval(intervaloColisao);
+                pararAnimações(screen);
+                estadosJogadores[playerIndex] = 'perdeu';
+                sounds('hit');
+            } else if (marginLeftPercentual <= 12 && marginLeftPercentual >= 6 && dinoPosition <= 90) {
+                clearInterval(intervaloColisao);
+                pararAnimações(screen);
+                estadosJogadores[playerIndex] = 'perdeu';
+                sounds('hit');
+            }
+        }, 100);
+
         if (estadosJogadores[playerIndex] === 'jogando') {
-            newObstacle.style.animation = '';
-            screen.removeChild(newObstacle);
+            newObstacle.style.animation = `obstacle-animation ${vel}ms linear infinite`;
+            setTimeout(() => {
+                if (estadosJogadores[playerIndex] === 'jogando') {
+                    newObstacle.style.animation = '';
+                    screen.removeChild(newObstacle);
+                }
+            }, vel);
         }
-    }, vel);
-    }
     }
 }
 
@@ -132,15 +151,15 @@ function pararAnimações(screen) {
 }
 
 function chamarCactos(screen, playerIndex) {
-        gerarCacto(screen, playerIndex);
-        if (Math.random() < 0.5 && vel > 1000){
-            setTimeout(() => {
-                gerarCacto(screen, playerIndex);
-            }, vel / 2);
-        }
+    gerarCacto(screen, playerIndex);
+    if (Math.random() < 0.5 && vel > 1000) {
         setTimeout(() => {
-            chamarCactos(screen, playerIndex);
-        }, vel);
+            gerarCacto(screen, playerIndex);
+        }, vel / 2);
+    }
+    setTimeout(() => {
+        chamarCactos(screen, playerIndex);
+    }, vel);
 }
 
 function pontos_vel() {
@@ -150,7 +169,7 @@ function pontos_vel() {
             scores[i].innerText = scoresAtual[i];
         }
     }
-    vel = Math.max(1000, vel - 2); // Impede que a velocidade fique abaixo de 1000
+    vel = Math.max(1000, vel - 2);
 }
 
 setInterval(pontos_vel, 100);
@@ -172,17 +191,19 @@ function escutaTeclado(event) {
 document.addEventListener('keypress', escutaTeclado);
 
 Adaptativo_vertical();
-// Ativa o touch para cada tela
 function Adaptativo_vertical() {
     let flexDirection = window.getComputedStyle(container).flexDirection;
     if (flexDirection === 'column') {
         screens.forEach((screen, index) => {
-            screen.addEventListener('touchstart', () => { if(estadosJogadores[index]=='jogando'){jump(dinossauros[index]) }});
+            screen.addEventListener('touchstart', () => {
+                if (estadosJogadores[index] === 'jogando') {
+                    jump(dinossauros[index]);
+                }
+            });
         });
     }
 }
 
-// Inicia o jogo chamando cactos para cada jogador
 screens.forEach((screen, index) => {
     chamarCactos(screen, index);
 });
