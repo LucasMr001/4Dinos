@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/info.css">
+    <link rel="icon" type="image/x-icon" href="./images/cactus/cactus1.gif">
+    <title>4Dinos</title>
+    ,<style>
+    @import url('https://fonts.cdnfonts.com/css/gameplay');
+
+        :root {
+            --shadow-color: #18071f;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            user-select: none;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            text-shadow: 1px 2px 0px black;
+            font-family: Arial, Helvetica, sans-serif;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            background-color: #E0E65E;
+        }
+
+        .container-cred {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 50%;
+            background-image: url("./images/cen/background.png");
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: gameplay;
+            font-size: 2.5em;
+            color: #5ABBF3;
+            text-shadow: 0 0 0px var(--shadow-color);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #ffffff;
+            margin: 20px 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin: 10px 0;
+        }
+
+        li {
+
+            margin: 5px 0;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-left: 4px solid #5ABBF3;
+            border-radius: 5px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        hr {
+            margin: 20px 0;
+            border: none;
+            height: 1px;
+            background: #ddd;
+        }
+
+        img {
+            margin: 10px;
+            border-radius: 5px;
+            max-width: 100%;
+        }
+
+        @media(max-width: 620px) {
+            .container-cred {
+                width: 100%;
+            }
+            h1 {
+                font-size: 1.3em;
+                color: #5ABBF3;
+                text-shadow: 0 0 10px var(--shadow-color);
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container-cred">
+        <h1>
+            4Dinos - Jogo Multijogador
+        </h1>
+
+        <h2>Configurações Padrão de Teclas</h2>
+        <ul>
+            <li>🟦 <strong>Q</strong>: Jogador 1</li>
+            <li>🟩 <strong>P</strong>: Jogador 2</li>
+            <li>🟪 <strong>X</strong>: Jogador 3</li>
+            <li>🟨 <strong>M</strong>: Jogador 4</li>
+        </ul>
+
+        <h2>Descrição</h2>
+        <p>
+            4Dinos é um jogo inspirado no clássico jogo do dinossauro do Google, mas com o diferencial: até <strong>4 jogadores podem competir simultaneamente</strong>! Cada jogador controla um dinossauro de uma cor diferente, e os sprites são totalmente autorais, proporcionando uma experiência única e divertida.
+        </p>
+
+        <h2>Recursos</h2>
+        <ul>
+            <li><strong>Multijogador</strong>: Até 4 jogadores podem competir, ideal para jogar com amigos e familiares.</li>
+            <li><strong>Dinossauros Coloridos</strong>: Cada jogador tem um dinossauro de cor distinta.</li>
+            <li><strong>Sprites Autorais</strong>: Todos os gráficos foram criados especialmente para este jogo.</li>
+            <li><strong>Mecânica Acessível</strong>: Jogo fácil de entender, perfeito para todas as idades.</li>
+        </ul>
+
+        <h2>Tecnologias Usadas</h2>
+        <ul>
+            <li><strong>HTML5</strong>: Para a estrutura do jogo.</li>
+            <li><strong>CSS3</strong>: Para estilização e design visual.</li>
+            <li><strong>JavaScript</strong>: Para lógica de jogo e interatividade.</li>
+        </ul>
+
+        <h2>Ferramentas Utilizadas</h2>
+        <ul>
+            <li><strong>LibreSprite</strong>: Criação dos sprites do jogo.</li>
+            <li><strong>ezGif</strong>: Redimensionamento de sprites sem perda de qualidade.</li>
+            <li><strong>mp3cut</strong>: Edição de áudios para efeitos sonoros.</li>
+            <li><strong>VSCode</strong>: Ambiente de desenvolvimento para escrever e compilar o código.</li>
+            <li><strong>Git e GitHub</strong>: Controle de versão e hospedagem do projeto.</li>
+        </ul>
+
+        <hr>
+
+        <p>
+            **Este é um projeto da faculdade IFPB - Campus Cajazeiras, desenvolvido para a disciplina de Gerência de Configuração e Mudanças, sob a orientação do professor Paulo de Freitas. O projeto foi realizado pelos alunos César Augusto Caju de Lacerda e Lucas de Morais Barboza.**
+        </p>
+    </div>
+</body>
+</html>
